@@ -1,6 +1,10 @@
 from .scripts import ClearScreen
 from PyInquirer import prompt, Separator
 
+knowledgeTypes = {
+    
+}
+
 def Select():
     print('Choose monster creature type(s). Monsters should generally have 1 major type with up to 1 additional major or related minor ' + 
         'type and optionally a single element subtype. Any more than that can lead to monsters with wide varieties of resistances ' + 
