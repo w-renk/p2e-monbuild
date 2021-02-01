@@ -4,8 +4,8 @@ from pprint import pprint
 questions = [
     {
         'type': 'checkbox',
-        'message': 'Choose monster creature type(s). Monsters should generally have between 1 and 3 types. Any more than three \
-            can lead to monsters with wide varieties of resistances and bonuses potentially increasing power. \
+        'message': 'Choose monster creature type(s). Monsters should generally have between 1 and 3 types (in any combination of major, minor and element). \
+            Any more than three can lead to monsters with wide varieties of resistances and bonuses potentially increasing power. \
             Elementals and Dragons often have an element subtype, though they are not required. Most major creature types have an \
             associated skill for Recall Knowledge; these will be reviewed after type selection with an opportunity to modify them.',
         'name': 'types',
@@ -33,19 +33,37 @@ questions = [
                 'name': 'Dream'
             },
             {
-                'name': 'Aberration'
+                'name': 'Elemental'
             },
             {
-                'name': 'Aberration'
+                'name': 'Fey'
             },
             {
-                'name': 'Aberration'
+                'name': 'Fiend'
             },
             {
-                'name': 'Aberration'
+                'name': 'Fungus'
             },
             {
-                'name': 'Aberration'
+                'name': 'Giant'
+            },
+            {
+                'name': 'Humanoid'
+            },
+            {
+                'name': 'Monitor'
+            },
+            {
+                'name': 'Ooze'
+            },
+            {
+                'name': 'Plant'
+            },
+            {
+                'name': 'Spirit'
+            },
+            {
+                'name': 'Undead'
             },
         ]
     }
