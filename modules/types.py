@@ -2,10 +2,10 @@ from .scripts import ClearScreen
 from PyInquirer import prompt, Separator
 
 knowledgeTypes = {
-    
+
 }
 
-def Select():
+def SelectTypes():
     print('Choose monster creature type(s). Monsters should generally have 1 major type with up to 1 additional major or related minor ' + 
         'type and optionally a single element subtype. Any more than that can lead to monsters with wide varieties of resistances ' + 
         'and bonuses, potentially increasing power beyond the intended level of the monster.\n\n' + 
@@ -13,7 +13,8 @@ def Select():
         'Most major creature types have an associated skill for Recall Knowledge; these will be reviewed after type selection with an opportunity to modify them.\n\n' + 
         'Press enter to continue.')
     input()
-    ClearScreen()
+    
+    #ClearScreen()
 
     questions = [
         {
