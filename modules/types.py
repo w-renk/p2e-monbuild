@@ -13,7 +13,7 @@ def SelectTypes():
         'Most major creature types have an associated skill for Recall Knowledge; these will be reviewed after type selection with an opportunity to modify them.\n\n' + 
         'Press enter to continue.')
     input()
-    
+
     #ClearScreen()
 
     questions = [
@@ -22,7 +22,7 @@ def SelectTypes():
             'message': 'Choose monster types',
             'name': 'types',
             'choices': [
-                Separator('-- Major Types --'),
+                Separator('\n-- Major Types --'),
                 {'name': 'Aberration'},
                 {'name': 'Animal'},
                 {'name': 'Beast'},
@@ -42,28 +42,28 @@ def SelectTypes():
                 {'name': 'Spirit'},
                 {'name': 'Undead'},
 
-                Separator('-- Minor types for Celestials --'),
+                Separator('\n-- Minor types for Celestials --'),
                 {'name': 'Angel'},
                 {'name': 'Archon'},
                 {'name': 'Azata'},
 
-                Separator('-- Minor Types for Fiends --'),
+                Separator('\n-- Minor Types for Fiends --'),
                 {'name': 'Daemon'},
                 {'name': 'Demon'},
                 {'name': 'Devil'},
                 {'name': 'Rakshasa'},
 
-                Separator('-- Minor Types for Monitors --'),
+                Separator('\n-- Minor Types for Monitors --'),
                 {'name': 'Aeon'},
                 {'name': 'Inevitable'},
                 {'name': 'Protean'},
                 {'name': 'Psychopomp'},
 
-                Separator('-- Minor Types for any major type --'),
+                Separator('\n-- Minor Types for any major type --'),
                 {'name': 'Ethereal'},
                 {'name': 'Swarm'},
 
-                Separator('-- Element Subtypes --'),
+                Separator('\n-- Element Subtypes --'),
                 {'name': 'Acid'},
                 {'name': 'Air'},
                 {'name': 'Cold'},
