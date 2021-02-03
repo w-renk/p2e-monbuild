@@ -1,7 +1,7 @@
-from scripts import ClearScreen
+from .scripts import ClearScreen
 from PyInquirer import prompt
 
-def SelectStatArray(statBlock):
+def SelectStatArray():
     ClearScreen()
     print("You now have the option of using a preset stat array (listed below) or to make a custom array.\n\n" +
     "Melee combatant: high (or extreme, at higher levels) Str, high Con\n\n" +
@@ -32,15 +32,31 @@ def SelectStatArray(statBlock):
 
     # define stat arrays here
     # need to define functions here to calculate arrays based on the predefined arrays
+    def Melee():
+        pass
+        #return (0,0,0,0,0,0)  # return stat array as a tuple, StatBlock should be able to unpack that when it calls this function
 
+    def Ranged():
+        pass
+
+    def Spellcaster():
+        pass
+
+    def Skilled():
+        pass
+
+    # this function needs to be called in the default case of the switch case below
+    # and should prompt the user to create a custom stat array
+    def Custom():
+        pass
 
     # god i fucking forgot python still doesn't have switch case statements oh god
     cases = {
-        'Melee combatant': lambda: print("Melee combatant"),
-        'Ranged combatant': lambda: print("ranged"),
-        'Spellcaster': lambda: print('spellcaster'),
-        'Skill monkey': lambda: print('skill monkey')
+        'Melee combatant': lambda: Melee(),
+        'Ranged combatant': lambda: Ranged(),
+        'Spellcaster': lambda: Spellcaster(),
+        'Skill monkey': lambda: Skilled()
     }
-    cases.get(answer['array'], lambda: print('custom'))()
+    statArray = cases.get(answer['array'], lambda: Custom())()  # why the hell does this extra set of parentheses need to be here?
 
-SelectStatArray()
+    return statArray

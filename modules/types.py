@@ -75,4 +75,4 @@ def SelectTypes():
         }
     ]
 
-    return(prompt(questions))
+    return prompt(questions)['types']

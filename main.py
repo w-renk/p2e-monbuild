@@ -1,8 +1,8 @@
 from pprint import pprint
-from modules import *
+from modules import StatBlock, ClearScreen
+
+creature = StatBlock()
 
 ClearScreen()
-print(SelectTemplateGraft())
-input()
-print(SelectTypes())
-input()
+print(creature.renderPlainText())
+print("\n\n\n\n")

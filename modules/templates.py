@@ -41,4 +41,6 @@ def SelectTemplateGraft():
         }
     ]
 
-    return prompt(question)
+    # switch case to return proper tuple in form of ('template name', 'level constraint') e.g., ('True Vampire', 'minimum level 6')
+
+    return (prompt(question)['template'], 'none')
