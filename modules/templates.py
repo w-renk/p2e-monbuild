@@ -1,7 +1,7 @@
 from .scripts import ClearScreen
 from PyInquirer import prompt
 
-def SelectTemplateGraft():
+def SelectTemplateGraft(statBlock):
     ClearScreen()
     print("You can optionally use a template graft to start the creation process. Template grafts grant specific bonuses and unique abilities. They also " +
             "largely determine the creature types the monster will have. Listed minimum levels account for the graft applied to a level -1 " +
@@ -42,5 +42,20 @@ def SelectTemplateGraft():
     ]
 
     # switch case to return proper tuple in form of ('template name', 'level constraint') e.g., ('True Vampire', 'minimum level 6')
+    ret = ('', '')
+    cases = {
+        'Ghost': lambda: ('Ghost', 'minimum level 1', ['Spirit', 'Undead']),
+        'Ghoul': lambda: ('Ghoul', 'minimum level 0', ['Undead']),
+        'Ghast': lambda: ('Ghast', 'minimum level 1', ['Undead']),
+        'Graveknight': lambda: ('Graveknight', 'minimum level 6', ['Undead']),
+        'Lich': lambda: ('Lich', 'Paizo recommended minimum level 13', ['Undead']),
+        'Ravener': lambda: ('Ravener', 'Paizo recommended minimum level 15', ['Undead']),
+        'True Vampire': lambda: ('True Vampire', 'minimum level 6', ['Undead']),
+        'Vampire Spawn': lambda: ('Vampire Spawn', 'minimum level 0', ['Undead']),
+        'Vrykolakas': lambda: ('Vrykolakas', 'minimum level 0', ['Undead']),
+        'Werecreature': lambda: ('Werecreature', 'minimum level 0', ['Beast', 'Humanoid']),
+        'Worm That Walks': lambda: ('Worm That Walks', 'Paizo recommended minimum level 5', ['Aberration', 'Swarm'])
+    }
 
-    return (prompt(question)['template'], 'none')
+    statBlock.template, statBlock.levelConstraint, statBlock.types = cases.get(prompt(question)['template'], lambda: (None, '', []))()
+    return

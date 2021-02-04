@@ -17,7 +17,11 @@ def SelectLevel(templateName, constraint='none'):
 
     class LevelValidator(Validator):
         def validate(self, document):
-            ok = True if (int(document.text) >= -1 and int(document.text) <= 24) else False
+            try:
+                ok = True if (int(document.text) >= -1 and int(document.text) <= 24) else False
+            except:
+                ok = False
+                
             if not ok:
                 raise ValidationError(
                 message='Enter a number between -1 and 24',

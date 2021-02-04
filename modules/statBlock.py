@@ -9,26 +9,23 @@ class StatBlock:
         # these assignments will call each of the scripts for their respective stats
         # most are assigning dummy values just to check functionality
 
-        self.name = 'sick creature bro' # SelectName()
+        self.name =  SelectName()
 
         self.levelConstraint = 'none'
 
-        self.template, self.levelConstraint = (None, 'none')  # SelectTemplateGraft()
+        # self.template, self.levelConstraint, self.types = SelectTemplateGraft()
+        SelectTemplateGraft(self)
 
-        self.level = 7 # SelectLevel(self.levelConstraint)
+        self.level = SelectLevel(self.template, self.levelConstraint)
 
-        self.types = ['Animal', 'Aberration'] # SelectTypes()
+        self.types = SelectTypes(self.template, self.types)  # ['Animal', 'Aberration'] # SelectTypes()
 
         self.alignment = 'N'
 
-        # these represent modifiers, not raw stats
-        # these are going to be handled as strings to make the render function easier
-        self.str = '+4'
-        self.dex = '+5'
-        self.con = '+3'
-        self.int = '-4'
-        self.wis = '+1'
-        self.cha = '-2'
+        
+        # modifiers are going to be handled as strings to make the render function easier
+        self.str, self.dex, self.con, self.int, self.wis, self.cha = ('+3','+8','+4','-1','-4','0')
+        #SelectStatArray(self)
         
         self.perception = 18
 

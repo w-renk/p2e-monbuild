@@ -5,4 +5,4 @@ creature = StatBlock()
 
 ClearScreen()
 print(creature.renderPlainText())
-print("\n\n\n\n")
+print("\n\n\nPress enter to exit")
