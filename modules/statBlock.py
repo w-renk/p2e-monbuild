@@ -25,7 +25,7 @@ class StatBlock:
         
         # modifiers are going to be handled as strings to make the render function easier
         self.str, self.dex, self.con, self.int, self.wis, self.cha = ('+3','+8','+4','-1','-4','0')
-        #SelectStatArray(self)
+        SelectStatArray(self)
         
         self.perception = 18
 
