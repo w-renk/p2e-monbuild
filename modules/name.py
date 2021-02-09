@@ -1,7 +1,7 @@
 from .scripts import ClearScreen
 from PyInquirer import prompt
 
-def SelectName():
+def SelectName(statBlock):
     ClearScreen()
     print("First, enter a name for your creature (or leave blank if you want). This doesn't determine stats in any way.\n\n")
     question = [
@@ -12,5 +12,4 @@ def SelectName():
         }
     ]
 
-    
-    return prompt(question)['name']
+    statBlock.name = prompt(question)['name']

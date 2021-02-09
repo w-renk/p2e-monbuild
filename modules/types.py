@@ -29,17 +29,18 @@ def _promptTypesOverride(template, types):
         return True
     return False
 
-def SelectTypes(template, types):
+def SelectTypes(creature):
 
-    if types:
-        if not _promptTypesOverride(template, types):
-            return types
+    if creature.types:
+        if not _promptTypesOverride(creature.template, creature.types):
+            return
 
     ClearScreen()
     print('Choose monster creature type(s). Monsters should generally have 1 major type with up to 1 additional major or related minor ' + 
         'type and optionally a single element subtype. Any more than that can lead to monsters with wide varieties of resistances ' + 
         'and bonuses, potentially increasing power beyond the intended level of the monster. In addition, the "Undead" creature type should not be combined' +
         'with other types except for "Spirit". It is rare for a creature with the "Spirit" type to not also bear the "Undead" type.\n\n' + 
+        '"Animal" and "Beast" subtypes should not be combined (beasts are animals with higher than -4 Int)\n\n' +
         'Elementals and Dragons often have an element subtype, though one is not required.\n\n' + 
         'Most major creature types have an associated skill for Recall Knowledge; these will be reviewed after type selection with an opportunity to modify them.\n\n' + 
         '(Press spacebar to select entries and enter to confirm)\n' +
@@ -105,4 +106,7 @@ def SelectTypes(template, types):
         }
     ]
 
-    return prompt(questions)['types']
+    # TODO
+    # add resistances, immunities, weaknesses, abilities, etc. based on chosen types
+
+    creature.types = prompt(questions)['types']

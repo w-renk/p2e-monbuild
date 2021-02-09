@@ -9,63 +9,102 @@ class StatBlock:
         # these assignments will call each of the scripts for their respective stats
         # most are assigning dummy values just to check functionality
 
-        self.name =  SelectName()
+        self.name = "";
+        SelectName(self)  # done
 
         self.levelConstraint = 'none'
+        self.template = None
+        self.types = []
+        SelectTemplateGraft(self)  # done
 
-        # self.template, self.levelConstraint, self.types = SelectTemplateGraft()
-        SelectTemplateGraft(self)
+        self.level = 6
+        SelectLevel(self) # done
 
-        self.level = SelectLevel(self.template, self.levelConstraint)
-
-        self.types = SelectTypes(self.template, self.types)  # ['Animal', 'Aberration'] # SelectTypes()
+        self.types = []  # ['Animal', 'Aberration'] # SelectTypes()
+        SelectTypes(self)  # done
 
         self.alignment = 'N'
+        # TODO
+        #SelectAlignment(self)
 
-        
+        self.isMindless = False
+        # TODO
+        #SetMindless(self)
+
         # modifiers are going to be handled as strings to make the render function easier
-        self.str, self.dex, self.con, self.int, self.wis, self.cha = ('+3','+8','+4','-1','-4','0')
-        SelectStatArray(self)
+        self.str, self.dex, self.con, self.int, self.wis, self.cha = ('0','0','0','0','0','0')
+        SelectStatArray(self)  # done
         
-        self.perception = 18
+        self.perception = 0
+        # TODO
+        #SetPerception(self)
 
         self.senses = [('low-light vision', 0), ('scent', 30)]  # ('senseType', range:int) 0 for no range
+        # TODO
+        #SelectSenses(self)
 
         self.languages = ['Aklo','Abyssal']
+        # TODO
+        #SelectLanguages(self)
 
         # should skills be implemented as a class?
         self.skills = [('Acrobatics', 20), ('Occultism', 7)]  # should be in the form ('skill name', bonus:int) [('acrobatics', 23), ('diplomacy', 18)]
+        # TODO
+        #SelectSkills(self)
 
         # items should just be names; ac and damage are already factored into creation process
         # any items carried by the monster are purely for flavor
         self.items = ['The shiniest shiny', 'The second shiniest shiny']
+        # TODO
+        #SelectItems(self)
 
         self.ac = 23
+        # TODO
+        #SetAC(self)
 
         self.fortitude = 12
         self.reflex = 18
         self.will = 12
+        # TODO
+        #SelectSaves(self)
 
         self.hp = 115
+        # TODO
+        #SetHP(self)
         
         # immunities can just be a list of strings
         self.immunities = []
+        # TODO
+        #SelectImmunities(self)
 
         # resistances should be in the form ('name', amount:int)
         # there should be some checking in place to ensure that resistances aren't listed for types
         # that the creature is immune to. check will have to take place after all resistances and
         # immunities have been added
         self.resistances = [('fire', 5), ('piercing', 5)]
+        # TODO
+        #SelectImmunities(self)
 
         self.weaknesses = [('cold', 10)]
+        # TODO
+        #SelectWeaknesses(self)
 
         self.speeds = [('walk', 25), ('swim', 35)]  # ('movementType', distance:int)
+        # TODO
+        #SetSpeeds(self)
 
+        # change attacks to an array of attacks [(attackName, bonus, damage, type), (name, bonud, damage, type)]
+        # make sure render() changes to reflect this as well
         self.attackBonus = 18
         self.attackDamage = (2,8,8)  # in the form (numberOfDice:int, sidesOfDie:int, flatAmound:int), (2, 6, 5) represents 2d6+5
         self.damageType = 'slashing'
+        # TODO
+        #SelectAttacks(self)
 
         self.isSpellCaster = False  # boolean, the following few variables will only be set and rendered if this flag is set to on
+        # TODO
+        #SetSpellCasting(self)
+        # add all of the following to SetSpellCasting
         if self.isSpellCaster:
             self.spellDC = 0
             self.spellAttack = 0
@@ -94,6 +133,8 @@ class StatBlock:
         # or set up a prompt for each unknown ability to allow the user to enter custom text for it
         self.abilityList = [('test ability name', 'this is some rules text for that ability'),
                             ('second test ability name', 'this rules text is worse than the first')]
+        # TODO
+        #EnterAbilities(self)
 
     def renderPlainText(self):
         renderString = ""
