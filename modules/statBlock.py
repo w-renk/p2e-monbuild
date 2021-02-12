@@ -3,37 +3,42 @@ from .level import SelectLevel
 from .statArrays import SelectStatArray
 from .templates import SelectTemplateGraft
 from .types import SelectTypes
+from .alignment import SelectAlignment
+from .mindless import SetMindless
 
 class StatBlock:
     def __init__(self):
         # these assignments will call each of the scripts for their respective stats
         # most are assigning dummy values just to check functionality
 
-        self.name = "";
-        SelectName(self)  # done
+        self.name = "Test Monster, Please Ignore";
+        #SelectName(self)  # done
 
         self.levelConstraint = 'none'
         self.template = None
         self.types = []
-        SelectTemplateGraft(self)  # done
+        #SelectTemplateGraft(self)  # done
 
         self.level = 6
-        SelectLevel(self) # done
+        #SelectLevel(self) # done
 
-        self.types = []  # ['Animal', 'Aberration'] # SelectTypes()
-        SelectTypes(self)  # done
+        self.types = ['Animal']
+        #SelectTypes(self)  # done
+
+        # TODO
+        # AssignTypeDependentStats()  # check types against table of abilities/properties associated with those types
 
         self.alignment = 'N'
-        # TODO
-        #SelectAlignment(self)
+        #SelectAlignment(self)  # done
 
         self.isMindless = False
-        # TODO
-        #SetMindless(self)
+        #SetMindless(self)  # done
+        if self.isMindless:
+            self.types.append('Mindless')
 
         # modifiers are going to be handled as strings to make the render function easier
         self.str, self.dex, self.con, self.int, self.wis, self.cha = ('0','0','0','0','0','0')
-        SelectStatArray(self)  # done
+        #SelectStatArray(self)  # done
         
         self.perception = 0
         # TODO
@@ -93,7 +98,19 @@ class StatBlock:
         # TODO
         #SetSpeeds(self)
 
-        # change attacks to an array of attacks [(attackName, bonus, damage, type), (name, bonud, damage, type)]
+        # change attacks to an array of of attacks where each attack is a dictionary so that i can
+        # do something like: if " 'agile' in attacks[i]['types']: " to check for specific types
+        #attacks = [{
+        #   'name': 'Rapier',
+        #   'bonus': 10,
+        #   'damage': (1,6,5),  # in the form (numberOfDice:int, sidesOfDie:int, flatAmound:int), (1, 6, 5) represents 1d6+5
+        #   'types': ['agile', 'finesse', 'piercing']
+        #},
+        #   'name': 'Claw',
+        #   'bonus': 10,
+        #   'damage': (1,4,2),
+        #   'types': ['agile', 'slashing']
+        #]
         # make sure render() changes to reflect this as well
         self.attackBonus = 18
         self.attackDamage = (2,8,8)  # in the form (numberOfDice:int, sidesOfDie:int, flatAmound:int), (2, 6, 5) represents 2d6+5
@@ -137,10 +154,9 @@ class StatBlock:
         #EnterAbilities(self)
 
     def renderPlainText(self):
+        # this should be split off into its own module at some point
+        # also need to make an html renderer
         renderString = ""
-        # just so i don't forget to do this and kick myself later
-
-        # render some stuff
 
         renderString += self.name
         renderString += "                  "
@@ -236,12 +252,12 @@ class StatBlock:
 
         renderString += '\n'
 
+        # set up for loop to perform this for each attack
+        # also need to somehow check for agile on attacks
         renderString += "Strike +" + str(self.attackBonus)
-        if self.attackBonus >= 6:
-            renderString += " [+" + str(self.attackBonus - 5)
-            if self.attackBonus >= 11:
-                renderString += "/+" + str(self.attackBonus - 10)
-            renderString += ']'
+        renderString += " [+" + str(self.attackBonus - 5)
+        renderString += "/+" + str(self.attackBonus - 10)
+        renderString += ']'
         renderString += ', Damage ' + str(self.attackDamage[0]) + 'd' + str(self.attackDamage[1]) + '+' + str(self.attackDamage[2]) + ' ' + self.damageType
         
         renderString += "\n"
