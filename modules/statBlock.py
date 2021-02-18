@@ -26,6 +26,12 @@ class StatBlock:
         #SelectTypes(self)  # done
 
         # TODO
+        self.senses = []
+        self.languages = []
+        self.speeds = []
+        self.abilityList = []
+        self.innateSpells = []
+        self.immunities = []
         # AssignTypeDependentStats()  # check types against table of abilities/properties associated with those types
 
         self.alignment = 'N'
@@ -35,6 +41,7 @@ class StatBlock:
         #SetMindless(self)  # done
         if self.isMindless:
             self.types.append('Mindless')
+            self.immunities.append('mental')
 
         # modifiers are going to be handled as strings to make the render function easier
         self.str, self.dex, self.con, self.int, self.wis, self.cha = ('0','0','0','0','0','0')
@@ -44,11 +51,11 @@ class StatBlock:
         # TODO
         #SetPerception(self)
 
-        self.senses = [('low-light vision', 0), ('scent', 30)]  # ('senseType', range:int) 0 for no range
+        self.senses.append(('low-light vision', 0))  # ('senseType', range:int) 0 for no range
         # TODO
         #SelectSenses(self)
 
-        self.languages = ['Aklo','Abyssal']
+        self.languages.append('Abyssal')
         # TODO
         #SelectLanguages(self)
 
@@ -78,7 +85,7 @@ class StatBlock:
         #SetHP(self)
         
         # immunities can just be a list of strings
-        self.immunities = []
+        self.immunities.append()
         # TODO
         #SelectImmunities(self)
 
@@ -90,11 +97,11 @@ class StatBlock:
         # TODO
         #SelectImmunities(self)
 
-        self.weaknesses = [('cold', 10)]
+        self.weaknesses.append(('cold', 10))
         # TODO
         #SelectWeaknesses(self)
 
-        self.speeds = [('walk', 25), ('swim', 35)]  # ('movementType', distance:int)
+        self.speeds.append(('walk', 25))  # ('movementType', distance:int)
         # TODO
         #SetSpeeds(self)
 
@@ -142,14 +149,13 @@ class StatBlock:
                 10: 0
             }
             self.preparedSpells = []  # in form ('name', numberPrepared:int), ('magic missile', 3) means 3 prepared casts of magic missile
-            self.innateSpells = []  # in form ('name', 'usage') e.g., ('magic missile', 'at will'), ('shocking grasp', '3/day')
+            self.innateSpells.append()  # in form ('name', 'usage') e.g., ('magic missile', 'at will'), ('shocking grasp', '3/day')
 
         # best way to handle this is probably to have the SelectAbilities() return just a list to here
         # then pull rules text for known abilities from a lookup table
         # for unknown abilities, either don't include rules text (with the intent being the user will add it after rendering text)
         # or set up a prompt for each unknown ability to allow the user to enter custom text for it
-        self.abilityList = [('test ability name', 'this is some rules text for that ability'),
-                            ('second test ability name', 'this rules text is worse than the first')]
+        self.abilityList.append(('test ability name', 'this is some rules text for that ability'))
         # TODO
         #EnterAbilities(self)
 
